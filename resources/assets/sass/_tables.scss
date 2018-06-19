@@ -1,0 +1,50 @@
+.has-text-highlighted {
+  background: transparentize($yellow, 0.5);
+}
+
+.detail-container {
+  .content {
+    ul:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
+$tr-danger: transparentize($red, .333);
+$tr-warning: transparentize($yellow, .333);
+$tr-success: transparentize($green, .333);
+
+$tr-classes: 'is-danger' $tr-danger, 'is-warning' $tr-warning, 'is-success' $tr-success;
+
+@each $tuple in $tr-classes {
+  tr.#{nth($tuple, 1)},
+  .table.is-striped tbody tr.#{nth($tuple, 1)} {
+    &:not(.is-selected) {
+      background: nth($tuple, 2);
+
+      &:nth-child(even) {
+        background: opacify(nth($tuple, 2), .333);
+      }
+    }
+  }
+
+  .table.is-hoverable.is-striped tbody tr.#{nth($tuple, 1)}:hover {
+    &:not(.is-selected) {
+      background: transparentize(nth($tuple, 2), .25);
+
+      &:nth-child(even) {
+        background: transparentize(nth($tuple, 2), .5);
+      }
+    }
+  }
+}
+
+.has-password-confirmation {
+  .field {
+    &.is-horizontal {
+      .field-label {
+        min-width: 150px;
+      }
+    }
+  }
+}
